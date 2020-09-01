@@ -8,7 +8,7 @@ class Parser : public IParser
 public:
     void Parse(int argc, char *argv[]) override;
 
-    std::vector<CommandData> GetParsedData() override;
+    std::vector<CommandData> GetParsedCommands() override;
 
 private:
 

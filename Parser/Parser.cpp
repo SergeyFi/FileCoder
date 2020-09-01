@@ -31,7 +31,7 @@ void Parser::Parse(int argc, char *argv[])
     }
 }
 
-std::vector<CommandData> Parser::GetParsedData()
+std::vector<CommandData> Parser::GetParsedCommands()
 {
     return data;
 }
