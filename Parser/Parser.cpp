@@ -3,51 +3,30 @@
 void Parser::Parse(int argc, char *argv[])
 {
     bool nameMode = true;
-    bool specifierMode = false;
-    bool argumentMode = false;
 
-    for (auto i = 0; i < argc; ++i)
+    for (auto i = 1; i < argc; ++i)
     {
-        auto& argument = argv[i];
+        std::string argument = argv[i];
 
-        CommandData newCommandData;
+        if (argument == ":")
+        {
+            nameMode = true;
+            continue;
+        }
 
         if (nameMode)
         {
-            newCommandData.name = argument;
+            data.push_back({});
+            data.back().name = argument;
             nameMode = false;
-            specifierMode = true;
         }
-
-        if (specifierMode)
+        else if (argument[0] == '-')
         {
-            if (argument[0] == '-')
-            {
-                newCommandData.modifiers.insert(argument);
-            }
-            else
-            {
-                specifierMode = false;
-                argumentMode = true;
-            }
+            data.back().modifiers.insert(argument);
         }
-
-        if (argumentMode)
+        else
         {
-            if (argument[0] == '"' && argument[std::strlen(argument) - 1])
-            {
-                newCommandData.arguments.emplace_back(argument);
-            }
-            else
-            {
-                data.push_back(newCommandData);
-                newCommandData = CommandData();
-
-                newCommandData.name = argument;
-
-                specifierMode = true;
-                argumentMode = false;
-            }
+            data.back().arguments.emplace_back(argument);
         }
     }
 }
