@@ -22,11 +22,11 @@ void Parser::Parse(int argc, char *argv[])
         }
         else if (argument[0] == '-')
         {
-            data.back().modifiers.insert(argument);
+            data.back().arguments.modifiers.insert(argument);
         }
         else
         {
-            data.back().arguments.emplace_back(argument);
+            data.back().arguments.arguments.emplace_back(argument);
         }
     }
 }
