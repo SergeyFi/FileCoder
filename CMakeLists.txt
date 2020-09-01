@@ -3,4 +3,4 @@ project(FileCoder)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(FileCoder main.cpp Parser/IParser.h DataTypes/CommandData.h Parser/Parser.cpp Parser/Parser.h Logger/ILogger.h Logger/Logger.cpp Logger/Logger.h)
+add_executable(FileCoder main.cpp Parser/IParser.h DataTypes/CommandData.h Parser/Parser.cpp Parser/Parser.h Logger/ILogger.h Logger/Logger.cpp Logger/Logger.h Commands/ICommand.h Commands/Command.cpp Commands/Command.h)
