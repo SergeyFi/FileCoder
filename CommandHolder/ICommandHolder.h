@@ -11,7 +11,8 @@ class ICommandHolder
 {
 protected:
 
-    virtual void AddNewCommand(std::string commandName, std::function<ICommand*(CommandArguments arguments)>) = 0;
+    virtual void AddNewCommand(std::string commandName,
+                               std::function<ICommand*()> command) = 0;
 
 public:
 
