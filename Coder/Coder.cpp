@@ -2,14 +2,17 @@
 
 #include <fstream>
 
-void Coder::CodeFile(std::string filePath, std::string cipherName, std::string keyName, std::string keyPath)
+void Coder::CodeFile(std::string filePath, std::string cipherName, std::string cipherPath, std::string keyName,
+                     std::string keyPath)
 {
-    std::ifstream file(filePath);
+    std::ifstream file(filePath, std::ios::binary | std::ios::out);
 
-    std::string line;
-    while (std::getline(file, line))
+    std::ofstream fileCoded(keyPath, std::ios::binary | std::ios::in);
+
+    std::string data;
+    while (std::getline(file, data))
     {
-
+        fileCoded << data;
     }
 }
 
