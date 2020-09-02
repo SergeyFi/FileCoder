@@ -2,8 +2,7 @@
 
 #include <fstream>
 
-void Coder::CodeFile(std::string filePath, std::string cipherName, std::string cipherPath, std::string keyName,
-                     std::string keyPath)
+void Coder::EncodeFile(std::string filePath, std::string cipherPath, std::string keyPath)
 {
     std::ifstream file(filePath, std::ios::binary | std::ios::out);
 
@@ -16,7 +15,7 @@ void Coder::CodeFile(std::string filePath, std::string cipherName, std::string c
     }
 }
 
-void Coder::EncodeFile(std::string filePath, std::string keyPath)
+void Coder::DecodeFile(std::string filePath, std::string keyPath)
 {
 
 }
