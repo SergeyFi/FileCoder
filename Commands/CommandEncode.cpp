@@ -19,7 +19,7 @@ void CommandEncode::Execute(std::vector<Modifier> modifiers)
         {
             cipherPath = modifier.arguments[0];
         }
-        else if (modifier.modifier == "-C")
+        else if (modifier.modifier == "-K")
         {
             keyPath = modifier.arguments[0];
         }
