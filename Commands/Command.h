@@ -4,6 +4,8 @@
 
 class Command : public ICommand
 {
+protected:
 
+    std::string name;
 };
 

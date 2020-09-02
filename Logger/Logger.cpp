@@ -15,14 +15,16 @@ void Logger::PrintCommandDebug(const std::vector<CommandData> &data)
     {
         std::cout << "Name: " << command.name << std::endl;
 
-        for (auto& mod : command.arguments.modifiers)
+        for (auto& mod : command.modifiers)
         {
-            std::cout << "Modifier: " << mod << std::endl;
-        }
+            std::cout << "Modifier: " << mod.modifier << " : ";
 
-        for (auto& arg : command.arguments.arguments)
-        {
-            std::cout << "Argument: " << arg << std::endl;
+            for (auto& arg : mod.arguments)
+            {
+                std::cout << "Argument: " << arg << " ";
+            }
+
+            std::cout << std::endl;
         }
     }
 }

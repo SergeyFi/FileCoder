@@ -2,15 +2,20 @@
 
 void Parser::Parse(int argc, char *argv[])
 {
+    const std::string nextCommandSymbol = ":";
+
     bool nameMode = true;
+    bool modMode = false;
+    bool argMode = false;
 
     for (auto i = 1; i < argc; ++i)
     {
         std::string argument = argv[i];
 
-        if (argument == ":")
+        if (argument == nextCommandSymbol)
         {
             nameMode = true;
+            modMode = false;
             continue;
         }
 
@@ -19,14 +24,27 @@ void Parser::Parse(int argc, char *argv[])
             data.push_back({});
             data.back().name = argument;
             nameMode = false;
+            continue;
         }
-        else if (argument[0] == '-')
+
+        if (argument[0] == '-')
         {
-            data.back().arguments.modifiers.insert(argument);
+            modMode = true;
+            argMode = false;
         }
-        else
+
+        if (modMode)
         {
-            data.back().arguments.arguments.emplace_back(argument);
+            data.back().modifiers.push_back({});
+            data.back().modifiers.back().modifier = argument;
+            modMode = false;
+            argMode = true;
+            continue;
+        }
+
+        if (argMode)
+        {
+            data.back().modifiers.back().arguments.push_back(argument);
         }
     }
 }

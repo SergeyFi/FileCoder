@@ -4,14 +4,14 @@
 #include <unordered_set>
 #include <vector>
 
-struct CommandArguments
+struct Modifier
 {
-    std::unordered_set<std::string> modifiers;
+    std::string modifier;
     std::vector<std::string> arguments;
 };
 
 struct CommandData
 {
     std::string name;
-    CommandArguments arguments;
+    std::vector<Modifier> modifiers;
 };

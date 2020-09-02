@@ -1,4 +1,4 @@
-//#define DEBUG
+#define DEBUG
 
 #include <memory>
 
@@ -14,7 +14,6 @@ int main(int argc, char *argv[])
     std::shared_ptr<IExecutor> Executor {new class Executor(CommandHolder.get())};
 
     Parser->Parse(argc, argv);
-
     Executor->ExecuteCommands(Parser->GetParsedCommands());
 
     return 0;
