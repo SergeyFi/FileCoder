@@ -1,4 +1,4 @@
-#define DEBUG
+//#define DEBUG
 
 #include "Executor.h"
 #include "../Logger/Logger.h"
@@ -21,11 +21,12 @@ void Executor::ExecuteCommands(std::vector<CommandData> commandsData)
 
         if (Command)
         {
-            // Add argument and execute
+            Command->Execute(data.modifiers);
         }
         else
         {
-            // Error
+            Logger::GetLogger()->Log("Unknown command: " + data.name, LogType::error);
+            break;
         }
     }
 }

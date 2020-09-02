@@ -17,9 +17,9 @@ protected:
 public:
 
     template<class CommandClass, class ... CommandArguments>
-    void AddCommand(const std::string& commandName, CommandArguments... args)
+    void AddCommand(std::string commandName, CommandArguments... args)
     {
-        auto& commandConstructor = [commandName, args...]()
+        auto commandConstructor = [commandName, args...]()
         {
             return new CommandClass(commandName, args...);
         };
