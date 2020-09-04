@@ -1,7 +1,6 @@
 #include "Coder.h"
 
 #include <fstream>
-#include <bitset>
 #include <iostream>
 
 void Coder::EncodeFile(std::string filePath, std::string cipherPath, std::string keyPath)
@@ -21,7 +20,10 @@ void Coder::EncodeFile(std::string filePath, std::string cipherPath, std::string
         file.read(buffer.data(), bufferSize);
         std::streamsize s = ((file) ? bufferSize : file.gcount());
 
-        fileCoded.write(buffer.data(), s);
+        KeyCode keyCodePair = Encode(buffer);
+
+        fileCoded.write(keyCodePair.dataEncoded.data(), s);
+        fileKey.write(keyCodePair.key.data(), s);
 
         if (!file)
         {
@@ -35,15 +37,19 @@ void Coder::DecodeFile(std::string filePath, std::string keyPath)
 
 }
 
-KeyCode Coder::Encode(char data)
+KeyCode Coder::Encode(std::vector<char>& data)
 {
-    char key = 'a';
-    char code = 'b';
+    std::vector<char> key;
+    std::vector<char> dataEncoded;
 
-    std::bitset<8> dataBin(data);
-    std::bitset<8> keyGen;
+    for (auto dataChar : data)
+    {
+        // Random generator of char must be here,
+        unsigned char randomChar = 'r';
 
+        key.push_back(randomChar);
+        dataEncoded.push_back(static_cast<unsigned char>(dataChar) ^ randomChar);
+    }
 
-
-    return {key, code};
+    return {key, dataEncoded};
 }

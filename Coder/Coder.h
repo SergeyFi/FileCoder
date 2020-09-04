@@ -3,11 +3,12 @@
 #include "ICoder.h"
 
 #include <vector>
+#include <bitset>
 
 struct KeyCode
 {
-    char key;
-    char code;
+    std::vector<char> key;
+    std::vector<char> dataEncoded;
 };
 
 class Coder : public ICoder
@@ -18,6 +19,6 @@ class Coder : public ICoder
 
 private:
 
-    KeyCode Encode(char data);
+    KeyCode Encode(std::vector<char>& data);
     
 };
