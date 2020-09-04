@@ -30,6 +30,10 @@ void Coder::EncodeFile(std::string filePath, std::string cipherPath, std::string
             break;
         }
     }
+
+    file.close();
+    fileCoded.close();
+    fileKey.close();
 }
 
 void Coder::DecodeFile(std::string cipherPath, std::string filePath, std::string keyPath)
@@ -48,19 +52,22 @@ void Coder::DecodeFile(std::string cipherPath, std::string filePath, std::string
     while (true)
     {
         fileCoded.read(cipherData.data(), bufferSize);
-        std::streamsize s = ((file) ? bufferSize : fileCoded.gcount());
-
         fileKey.read(keyData.data(), bufferSize);
+        std::streamsize s = ((fileKey) ? bufferSize : fileKey.gcount());
 
         auto decodedData = Decode(cipherData, keyData);
 
         file.write(decodedData.data(), s);
 
-        if (!file)
+        if (!fileKey)
         {
             break;
         }
     }
+
+    file.close();
+    fileCoded.close();
+    fileKey.close();
 }
 
 KeyCode Coder::Encode(std::vector<char>& data)
@@ -82,7 +89,7 @@ KeyCode Coder::Encode(std::vector<char>& data)
 
 std::vector<char> Coder::Decode(std::vector<char>& cipherData, std::vector<char> &keyData)
 {
-    std::vector<char> decodedData(cipherData.size());
+    std::vector<char> decodedData;
 
     for (auto i = 0; i < cipherData.size(); ++i)
     {

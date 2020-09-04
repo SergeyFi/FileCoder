@@ -7,6 +7,7 @@
 
 #include "Commands/CommandVersion.h"
 #include "Commands/CommandEncode.h"
+#include "Commands/CommandDecode.h"
 
 
 int main(int argc, char *argv[])
@@ -18,6 +19,7 @@ int main(int argc, char *argv[])
 
     CommandHolder->AddCommand<CommandVersion>("version", "0.1a");
     CommandHolder->AddCommand<CommandEncode>("encode", Coder.get());
+    CommandHolder->AddCommand<CommandDecode>("decode", Coder.get());
 
     Parser->Parse(argc, argv);
     Executor->ExecuteCommands(Parser->GetParsedCommands());
