@@ -77,8 +77,7 @@ KeyCode Coder::Encode(std::vector<char>& data)
 
     for (auto dataChar : data)
     {
-        // Random generator of char must be here,
-        unsigned char randomChar = 'r';
+        unsigned char randomChar = RandGenerator->GetNextRandomChar();
 
         key.push_back(randomChar);
         dataEncoded.push_back(static_cast<unsigned char>(dataChar) ^ randomChar);
