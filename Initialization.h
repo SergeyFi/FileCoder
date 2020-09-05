@@ -17,7 +17,7 @@ static std::shared_ptr<ICoder> Coder {new class Coder()};
 
 void Init()
 {
-    CommandHolder->AddCommand<CommandVersion>("version", "0.1a");
+    CommandHolder->AddCommand<CommandVersion>("version", "0.1a-2");
     CommandHolder->AddCommand<CommandEncode>("encode", Coder.get());
     CommandHolder->AddCommand<CommandDecode>("decode", Coder.get());
 }
