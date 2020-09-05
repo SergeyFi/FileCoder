@@ -16,14 +16,21 @@ bool Command::PathExist(std::string path)
     return pathExist;
 }
 
-bool Command::FileExist(std::string path)
+bool Command::FileExist(std::string path, std::string targetName)
 {
     std::error_code error;
     bool fileExist = std::filesystem::is_regular_file(path, error);
 
     if (!fileExist)
     {
-        Logger::GetLogger()->Log("File " + path + " does not exist !", LogType::error);
+        if (!path.empty())
+        {
+            Logger::GetLogger()->Log("File " + path + " does not exist !", LogType::error);
+        }
+        else
+        {
+            Logger::GetLogger()->Log("File for " + targetName + " does not set !", LogType::error);
+        }
     }
 
     return fileExist;

@@ -26,8 +26,8 @@ void CommandDecode::Execute(std::vector<Modifier> modifiers)
     }
 
     bool b, c;
-    b = !FileExist(cipherPath);
-    c = !FileExist(keyPath);
+    b = !FileExist(cipherPath, "cipher");
+    c = !FileExist(keyPath, "key");
 
     if (b || c)
     {

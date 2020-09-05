@@ -25,7 +25,7 @@ void CommandEncode::Execute(std::vector<Modifier> modifiers)
         }
     }
 
-    if (!FileExist(filePath))
+    if (!FileExist(filePath, "encode"))
     {
         return;
     }

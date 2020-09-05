@@ -15,7 +15,7 @@ protected:
 
     bool PathExist(std::string path);
 
-    bool FileExist(std::string path);
+    bool FileExist(std::string path, std::string targetName = "");
 
     bool IsDirectory(std::string path);
 
