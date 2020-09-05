@@ -69,3 +69,13 @@ std::string Command::RemovePrefix(const std::string &path, std::string prefix)
 
     return newPath;
 }
+
+std::string Command::GetArgument(const Modifier& modifier, int index)
+{
+    if (modifier.arguments.size() < index)
+    {
+        return "";
+    }
+
+    return modifier.arguments[index];
+}

@@ -24,5 +24,7 @@ protected:
     void PreparePath(std::string& path, std::string pathReserve, std::string prefix);
 
     std::string RemovePrefix(const std::string& path, std::string prefix);
+
+    std::string GetArgument(const Modifier& modifier, int index);
 };
 
