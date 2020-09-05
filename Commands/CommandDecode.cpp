@@ -25,5 +25,15 @@ void CommandDecode::Execute(std::vector<Modifier> modifiers)
         }
     }
 
+    bool b, c;
+
+    b = !FileExist(cipherPath);
+    c = !FileExist(keyPath);
+
+    if (b || c)
+    {
+        return;
+    }
+
     Coder->DecodeFile(cipherPath, filePath, keyPath);
 }
