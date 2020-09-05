@@ -3,6 +3,7 @@
 void CommandDecode::Execute(std::vector<Modifier> modifiers)
 {
     std::string filePath, cipherPath, keyPath;
+    bool needPrefix = false;
 
     for (const auto& modifier : modifiers)
     {
@@ -23,6 +24,10 @@ void CommandDecode::Execute(std::vector<Modifier> modifiers)
         {
             keyPath = modifier.arguments[0];
         }
+        else if (modifier.modifier == "-P")
+        {
+            needPrefix = true;
+        }
     }
 
     bool b, c;
@@ -34,6 +39,12 @@ void CommandDecode::Execute(std::vector<Modifier> modifiers)
     {
         return;
     }
+
+    std::string prefix;
+
+    (needPrefix) ? prefix = prefix = "" : prefix = ".decoded";
+
+    PreparePath(filePath, RemovePrefix(cipherPath, ".cipher"), prefix);
 
     Coder->DecodeFile(cipherPath, filePath, keyPath);
 }

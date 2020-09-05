@@ -57,3 +57,15 @@ void Command::PreparePath(std::string& path, std::string pathReserve, std::strin
     path +=  prefix;
 }
 
+std::string Command::RemovePrefix(const std::string &path, std::string prefix)
+{
+    std::string newPath = path;
+
+    size_t pos = newPath.find(prefix);
+    if (pos != std::string::npos)
+    {
+        newPath.erase(pos, prefix.length());
+    }
+
+    return newPath;
+}

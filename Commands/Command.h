@@ -22,5 +22,7 @@ protected:
     std::string GetFileName(std::string path);
 
     void PreparePath(std::string& path, std::string pathReserve, std::string prefix);
+
+    std::string RemovePrefix(const std::string& path, std::string prefix);
 };
 
