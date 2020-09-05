@@ -3,6 +3,7 @@
 #include "ICommand.h"
 #include "../Logger/Logger.h"
 
+
 class Command : public ICommand
 {
 public:
@@ -11,5 +12,9 @@ public:
 protected:
 
     std::string name;
+
+    bool PathExist(std::string path);
+
+    bool FileExist(std::string path);
 };
 
