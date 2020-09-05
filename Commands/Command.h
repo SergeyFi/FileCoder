@@ -16,5 +16,11 @@ protected:
     bool PathExist(std::string path);
 
     bool FileExist(std::string path);
+
+    bool IsDirectory(std::string path);
+
+    std::string GetFileName(std::string path);
+
+    void PreparePath(std::string& path, std::string pathReserve, std::string prefix);
 };
 

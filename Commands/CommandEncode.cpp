@@ -23,7 +23,16 @@ void CommandEncode::Execute(std::vector<Modifier> modifiers)
         {
             keyPath = modifier.arguments[0];
         }
+
     }
+
+    if (!FileExist(filePath))
+    {
+        return;
+    }
+
+    PreparePath(keyPath, filePath, ".key");
+    PreparePath(cipherPath, filePath, ".cipher");
 
     Coder->EncodeFile(filePath, cipherPath, keyPath);
 }

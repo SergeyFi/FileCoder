@@ -13,11 +13,6 @@ bool Command::PathExist(std::string path)
     std::error_code error;
     bool pathExist = std::filesystem::exists(path, error);
 
-    if (!pathExist)
-    {
-        Logger::GetLogger()->Log(error.message(), LogType::error);
-    }
-
     return pathExist;
 }
 
@@ -28,8 +23,37 @@ bool Command::FileExist(std::string path)
 
     if (!fileExist)
     {
-        Logger::GetLogger()->Log(error.message(), LogType::error);
+        Logger::GetLogger()->Log("File " + path + " does not exist !", LogType::error);
     }
 
     return fileExist;
 }
+
+bool Command::IsDirectory(std::string path)
+{
+    std::error_code error;
+    bool isDirectory = std::filesystem::is_directory(path, error);
+
+    return isDirectory;
+}
+
+std::string Command::GetFileName(std::string path)
+{
+    return std::filesystem::path(path).filename().string();
+}
+
+void Command::PreparePath(std::string& path, std::string pathReserve, std::string prefix)
+{
+    if (path.empty())
+    {
+        path = pathReserve;
+    }
+
+    if (IsDirectory(path))
+    {
+        path += GetFileName(pathReserve);
+    }
+
+    path +=  prefix;
+}
+
