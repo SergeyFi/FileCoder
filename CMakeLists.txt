@@ -34,4 +34,5 @@ add_executable(
         Commands/CommandDecode.h
         Coder/RandomChar.cpp
         Coder/RandomChar.h
-        Coder/IRandomChar.h)
+        Coder/IRandomChar.h
+        Initialization.h)
