@@ -7,22 +7,17 @@ void CommandDecode::Execute(std::vector<Modifier> modifiers)
 
     for (const auto& modifier : modifiers)
     {
-        if (modifier.arguments.empty())
-        {
-            break;
-        }
-
         if (modifier.modifier == "-F")
         {
-            filePath = modifier.arguments[0];
+            filePath = GetArgument(modifier, 0);
         }
         else if (modifier.modifier == "-C")
         {
-            cipherPath = modifier.arguments[0];
+            cipherPath = GetArgument(modifier, 0);
         }
         else if (modifier.modifier == "-K")
         {
-            keyPath = modifier.arguments[0];
+            keyPath = GetArgument(modifier, 0);
         }
         else if (modifier.modifier == "-P")
         {
@@ -31,7 +26,6 @@ void CommandDecode::Execute(std::vector<Modifier> modifiers)
     }
 
     bool b, c;
-
     b = !FileExist(cipherPath);
     c = !FileExist(keyPath);
 
@@ -41,8 +35,10 @@ void CommandDecode::Execute(std::vector<Modifier> modifiers)
     }
 
     std::string prefix;
-
-    (needPrefix) ? prefix = prefix = "" : prefix = ".decoded";
+    if (needPrefix)
+    {
+        prefix = ".decoded";
+    }
 
     PreparePath(filePath, RemovePrefix(cipherPath, ".cipher"), prefix);
 
