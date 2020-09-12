@@ -5,7 +5,7 @@
 
 unsigned char RandomChar::GetNextRandomChar()
 {
-    if (randomChars.empty())
+    while (randomChars.empty())
     {
         AddRandCharsToQueue();
     }
