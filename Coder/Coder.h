@@ -28,6 +28,8 @@ public:
 
 private:
 
+    const int bufferSize = 1024;
+
     KeyCode Encode(std::vector<char>& data);
 
     std::vector<char> Decode(std::vector<char>& cipherData, std::vector<char>& keyData);

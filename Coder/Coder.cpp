@@ -1,7 +1,6 @@
 #include "Coder.h"
 
 #include <fstream>
-#include <iostream>
 
 void Coder::EncodeFile(std::string filePath, std::string cipherPath, std::string keyPath)
 {
@@ -10,8 +9,6 @@ void Coder::EncodeFile(std::string filePath, std::string cipherPath, std::string
     std::ofstream fileCoded(cipherPath, std::ios::binary | std::ios::out);
 
     std::ofstream fileKey(keyPath, std::ios::binary | std::ios::out);
-
-    const int bufferSize = 1024;
 
     std::vector<char> buffer (bufferSize + 1, 0);
 
@@ -43,8 +40,6 @@ void Coder::DecodeFile(std::string cipherPath, std::string filePath, std::string
     std::ofstream file(filePath, std::ios::binary | std::ios::out);
 
     std::ifstream  fileKey(keyPath, std::ios::binary | std::ios::out);
-
-    const int bufferSize = 1024;
 
     std::vector<char> cipherData (bufferSize + 1, 0);
     std::vector<char> keyData (bufferSize + 1, 0);
