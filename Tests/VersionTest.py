@@ -1,8 +1,12 @@
 import subprocess
 
-result = subprocess.run(['FileCoder', 'version'], stdout=subprocess.PIPE)
+testName = 'Version test'
 
-if result.stdout.decode("UTF-8").find("FileCoder Version:") > -1:
-    print("OK")
-else:
-    print("Bad")
+
+def run_version_test():
+    result = subprocess.run(['FileCoder', 'version'], stdout=subprocess.PIPE)
+
+    if result.stdout.decode("UTF-8").find("FileCoder Version:") > -1:
+        return True
+    else:
+        return False
