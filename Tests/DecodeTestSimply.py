@@ -1,6 +1,7 @@
 import subprocess
 import settings
 import os
+import ClearFiles
 
 result = subprocess.run([settings.fileCoder, 'decode',
                          '-F', settings.fileTarget,
@@ -16,3 +17,5 @@ if targetSize == decodedFileSize:
     print(settings.ok)
 else:
     print(settings.bad)
+
+ClearFiles.clear_files(settings.fileDecodedDefault, settings.fileCipherDefault, settings.fileKeyDefault)
