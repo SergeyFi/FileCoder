@@ -1,5 +1,7 @@
 fileCoder = 'FileCoder'
 fileTarget = 'BiginJapan.mp3'
+fileCipherCustom = 'BigCipher'
+fileKeyCustom = 'BigKey'
 
 cipherPrefix = '.cipher'
 keyPrefix = '.key'
