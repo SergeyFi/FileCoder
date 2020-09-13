@@ -35,4 +35,5 @@ add_executable(
         Coder/RandomChar.cpp
         Coder/RandomChar.h
         Coder/IRandomChar.h
-        Initialization.h)
+        Initialization.h
+        defination.h)

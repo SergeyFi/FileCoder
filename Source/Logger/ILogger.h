@@ -21,4 +21,6 @@ public:
     virtual void Log(std::string text, LogType logType) = 0;
 
     virtual void PrintCommandDebug(const std::vector<CommandData>& data) = 0;
+
+    virtual void PrintPercent(std::string name, float percent) = 0;
 };

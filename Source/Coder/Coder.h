@@ -35,5 +35,7 @@ private:
     std::vector<char> Decode(std::vector<char>& cipherData, std::vector<char>& keyData);
 
     IRandomChar* RandGenerator;
+
+    void PrintFileReadPercent(std::ifstream& file, int fileSize, std::string name);
     
 };

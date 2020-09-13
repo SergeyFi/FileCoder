@@ -2,6 +2,7 @@
 
 #include <fstream>
 #include "../Logger/Logger.h"
+#include <filesystem>
 
 void Coder::EncodeFile(std::string filePath, std::string cipherPath, std::string keyPath)
 {
@@ -13,6 +14,8 @@ void Coder::EncodeFile(std::string filePath, std::string cipherPath, std::string
 
     std::vector<char> buffer (bufferSize + 1, 0);
 
+    int fileSize = std::filesystem::file_size(filePath);
+
     while (true)
     {
         file.read(buffer.data(), bufferSize);
@@ -22,6 +25,8 @@ void Coder::EncodeFile(std::string filePath, std::string cipherPath, std::string
 
         fileCoded.write(keyCodePair.dataEncoded.data(), s);
         fileKey.write(keyCodePair.key.data(), s);
+
+        PrintFileReadPercent(file, fileSize, "Encoding");
 
         if (!file)
         {
@@ -46,6 +51,8 @@ void Coder::DecodeFile(std::string cipherPath, std::string filePath, std::string
     std::vector<char> cipherData (bufferSize + 1, 0);
     std::vector<char> keyData (bufferSize + 1, 0);
 
+    int fileSize = std::filesystem::file_size(cipherPath);
+
     while (true)
     {
         fileCoded.read(cipherData.data(), bufferSize);
@@ -55,6 +62,8 @@ void Coder::DecodeFile(std::string cipherPath, std::string filePath, std::string
         auto decodedData = Decode(cipherData, keyData);
 
         file.write(decodedData.data(), s);
+
+        PrintFileReadPercent(fileCoded, fileSize, "Decoding");
 
         if (!fileKey)
         {
@@ -94,4 +103,13 @@ std::vector<char> Coder::Decode(std::vector<char>& cipherData, std::vector<char>
     }
 
     return decodedData;
+}
+
+void Coder::PrintFileReadPercent(std::ifstream& file, int fileSize, std::string name)
+{
+    if (file.tellg() % int(fileSize / 10000) == 0)
+    {
+        Logger::GetLogger()->PrintPercent
+                (std::move(name), float (file.tellg())/ float(fileSize) * 100);
+    }
 }

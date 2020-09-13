@@ -1,5 +1,7 @@
 #include "Initialization.h"
 
+#define WINDOWS
+
 int main(int argc, char *argv[])
 {
     Init();

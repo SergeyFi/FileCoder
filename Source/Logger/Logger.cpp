@@ -1,6 +1,8 @@
 #include "Logger.h"
 
+#include "..//defination.h"
 #include <iostream>
+#include <cstdlib>
 
 void Logger::Log(std::string text, LogType logType)
 {
@@ -27,4 +29,19 @@ void Logger::PrintCommandDebug(const std::vector<CommandData> &data)
             std::cout << std::endl;
         }
     }
+}
+
+void Logger::PrintPercent(std::string name, float percent)
+{
+    ClearScreen();
+    std::cout << name << ": " << int(percent) << "%" << std::endl;
+}
+
+void Logger::ClearScreen()
+{
+#ifdef WINDOWS
+    std::system("cls");
+#else
+    std::system ("clear");
+#endif
 }

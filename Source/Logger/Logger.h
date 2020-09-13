@@ -17,6 +17,8 @@ public:
         return Logger;
     }
 
+    void PrintPercent(std::string name, float percent) override;
+
 private:
 
     const std::unordered_map<LogType, std::string> textLogType
@@ -27,4 +29,6 @@ private:
             };
 
     Logger() = default;
+
+    void ClearScreen();
 };
