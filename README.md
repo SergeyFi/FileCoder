@@ -4,6 +4,7 @@ FileCoder - small program for file ecryption that use [Vernam Cipher](https://en
  ## Commands:
 * Encode file: encode -F file_to_encode -K key_file -C cipher_file 
 * Decode file: decode -F decoded_file -K key_file -C cipher_file 
+* Get programm version: version
 * *The order of modifiers is not important.*
 
 ## Also valid commands:
