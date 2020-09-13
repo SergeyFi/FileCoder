@@ -1,6 +1,7 @@
 #include "Coder.h"
 
 #include <fstream>
+#include "../Logger/Logger.h"
 
 void Coder::EncodeFile(std::string filePath, std::string cipherPath, std::string keyPath)
 {
@@ -24,6 +25,7 @@ void Coder::EncodeFile(std::string filePath, std::string cipherPath, std::string
 
         if (!file)
         {
+            Logger::GetLogger()->Log("Finish file encoding.", LogType::notification);
             break;
         }
     }
@@ -56,6 +58,7 @@ void Coder::DecodeFile(std::string cipherPath, std::string filePath, std::string
 
         if (!fileKey)
         {
+            Logger::GetLogger()->Log("Finish file decoding.", LogType::notification);
             break;
         }
     }
