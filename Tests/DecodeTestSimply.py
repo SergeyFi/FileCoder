@@ -15,10 +15,11 @@ def run_encode_test():
 
     result.stdout.decode("UTF-8")
 
-    targetSize = os.path.getsize(settings.fileTarget)
-    decodedFileSize = os.path.getsize(settings.fileDecodedDefault)
+    try:
+        if filecmp.cmp(settings.fileTarget, settings.fileDecodedDefault, False):
+            return True
+        else:
+            return False
 
-    if filecmp.cmp(settings.fileTarget, settings.fileDecodedDefault, False):
-        return True
-    else:
-        return False
+    except FileNotFoundError as not_found:
+        print('File', not_found.filename, 'does not exist.')

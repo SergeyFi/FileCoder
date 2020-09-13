@@ -11,11 +11,15 @@ def run_encode_test():
 
     result.stdout.decode("UTF-8")
 
-    targetSize = os.path.getsize(settings.fileTarget)
-    cipherSize = os.path.getsize(settings.fileCipherDefault)
-    keySize = os.path.getsize(settings.fileKeyDefault)
+    try:
+        targetSize = os.path.getsize(settings.fileTarget)
+        cipherSize = os.path.getsize(settings.fileCipherDefault)
+        keySize = os.path.getsize(settings.fileKeyDefault)
 
-    if targetSize == cipherSize == keySize:
-        return True
-    else:
-        return False
+        if targetSize == cipherSize == keySize:
+            return True
+        else:
+            return False
+
+    except FileNotFoundError as not_found:
+        print('File', not_found.filename, 'does not exist.')
