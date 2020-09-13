@@ -7,8 +7,8 @@ result = subprocess.run([settings.fileCoder, 'encode', '-F', settings.fileTarget
 result.stdout.decode("UTF-8")
 
 targetSize = os.path.getsize(settings.fileTarget)
-cipherSize = os.path.getsize(settings.fileTarget + settings.cipherPrefix)
-keySize = os.path.getsize(settings.fileTarget + settings.keyPrefix)
+cipherSize = os.path.getsize(settings.fileCipherDefault)
+keySize = os.path.getsize(settings.fileKeyDefault)
 
 if targetSize == cipherSize == keySize:
     print(settings.ok)
