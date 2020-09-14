@@ -1,6 +1,5 @@
 import subprocess
 import settings
-import os
 import filecmp
 
 
