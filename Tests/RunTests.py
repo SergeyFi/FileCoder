@@ -5,6 +5,7 @@ import DecodeTestSimply
 import EncodeArgsTest
 import ClearFiles
 import VersionTest
+import DecodeArgsTest
 
 printResult.print_result(VersionTest.testName, VersionTest.run_version_test())
 
@@ -16,4 +17,6 @@ ClearFiles.clear_files(settings.fileDecodedDefault, settings.fileCipherDefault, 
 
 printResult.print_result(EncodeArgsTest.testName, EncodeArgsTest.run_encode_test())
 
-ClearFiles.clear_files(settings.fileCipherCustom, settings.fileKeyCustom)
+printResult.print_result(DecodeArgsTest.testName, DecodeArgsTest.run_decode_test())
+
+ClearFiles.clear_files(settings.fileCipherCustom, settings.fileKeyCustom, settings.fileDecodedCustom)
