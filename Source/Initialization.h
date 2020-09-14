@@ -1,5 +1,6 @@
 #pragma once
 #include <memory>
+#include "defination.h"
 
 #include "Parser/Parser.h"
 #include "CommandHolder/CommandHolder.h"
@@ -17,7 +18,7 @@ static std::shared_ptr<ICoder> Coder {new class Coder()};
 
 void Init()
 {
-    CommandHolder->AddCommand<CommandVersion>("version", "0.1a-3");
+    CommandHolder->AddCommand<CommandVersion>("version", VERSION);
     CommandHolder->AddCommand<CommandEncode>("encode", Coder.get());
     CommandHolder->AddCommand<CommandDecode>("decode", Coder.get());
 }
